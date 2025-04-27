@@ -3,4 +3,4 @@ https://raw.githack.com/shamstabraiz1/Web-Design-and-Development/main/WDD%20lab%
 <br>
 Output of link for lab task 2 (power pixel)
 <br>
-https://raw.githack.com/shamstabraiz1/Web-Design-and-Development/tree/main/WDD%20lab%20task%202
+https://cdn.statically.io/gh/shamstabraiz1/Web-Design-and-Development/tree/main/WDD%20lab%20task%20
