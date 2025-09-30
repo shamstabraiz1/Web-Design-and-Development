@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Balls</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        @keyframes redBallAnimation {
+            0% { transform: translateY(0); background-color: red; }
+            50% { transform: translateY(-60px); background-color: #ea6e6e; }
+            100% { transform: translateY(0); background-color: red; }
+        }
+
+        @keyframes greenBallAnimation {
+            0% { transform: translateY(0); background-color: green; }
+            50% { transform: translateY(-60px); background-color: #74db74; }
+            100% { transform: translateY(0); background-color: green; }
+        }
+
+        @keyframes blueBallAnimation {
+            0% { transform: translateY(0); background-color: blue; }
+            50% { transform: translateY(-60px); background-color: #8fcade; }
+            100% { transform: translateY(0); background-color: blue; }
+        }
+
+        .ball {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+        }
+
+        #red-ball {
+            background-color: red;
+            left: calc(50% - 80px);
+            animation: redBallAnimation 4s infinite ease-in-out;
+        }
+
+        #green-ball {
+            background-color: green;
+            left: calc(50% - 0px);
+            animation: greenBallAnimation 4s infinite ease-in-out;
+            animation-delay: 1.5s;
+        }
+
+        #blue-ball {
+            background-color: blue;
+            left: calc(50% + 80px);
+            animation: blueBallAnimation 4s infinite ease-in-out;
+            animation-delay: 2.5s;
+        }
+    </style>
+</head>
+<body>
+    <div id="red-ball" class="ball"></div>
+    <div id="green-ball" class="ball"></div>
+    <div id="blue-ball" class="ball"></div>
+</body>
+</html>

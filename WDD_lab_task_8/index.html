@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Column</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .post-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #e74c3c;
+        }
+        .post-card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+        .post-card p {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        .post-tags {
+            margin-bottom: 10px;
+        }
+        .post-tags span {
+            background: #dfe6e9;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #2c3e50;
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .action-btn span {
+            margin-left: 5px;
+        }
+        .like-btn { color: #e74c3c; }
+        .dislike-btn { color: #f1c40f; }
+        .view-btn { color: #3498db; }
+        .edit-btn {
+            background: #2ecc71;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search posts...">
+        </div>
+        <div id="postContainer"></div>
+    </div>
+
+    <script>
+        // Sample blog posts data
+        let posts = [
+            { id: 1, title: "His mother taught him", content: "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. H...", tags: ["history", "crime"], likes: 192, dislikes: 25, views: 305 },
+            { id: 2, title: "He was an expert", content: "He was an expert but not in a discipline that anyone could fully appreciate. He knew how to hold the cone just right so...", tags: ["french", "fiction"], likes: 859, dislikes: 32, views: 4884 },
+            { id: 3, title: "Dave watched the forest", content: "Dave watched as the forest burned up on the hill. The forest burned up on the hill only a few miles from her house. The car had been hastily...", tags: ["magical", "history"], likes: 1448, dislikes: 39, views: 4152 },
+            { id: 4, title: "All he wanted was candy", content: "All he wanted was a candy bar. It didn't seem like a difficult request to comprehend, but the clerk remained frozen and...", tags: ["mystery", "english"], likes: 359, dislikes: 18, views: 4548 },
+            { id: 5, title: "Hopes and dreams were dashed", content: "Hopes and dreams were dashed that day. It should have been expected, but it still came as a shock. The warning sign had...", tags: ["crime", "mystery"], likes: 119, dislikes: 30, views: 626 },
+            { id: 6, title: "Dave wasn't exactly sure", content: "Dave wasn't exactly sure how he had ended up in this predicament. He faintly recalled the events that had led to this...", tags: ["english", "classic"], likes: 15, dislikes: 8, views: 38 },
+            { id: 7, title: "This is important to remember", content: "This is important to remember. Love isn't like you don't need to divide it among all your friends and loved ones. N...", tags: ["magical", "crime"], likes: 127, dislikes: 26, views: 168 },
+            { id: 8, title: "One can cook on and with an open fire", content: "One can cook on and with an open fire. There are ways to cook with fire outside. Cooking meat using a spit...", tags: ["american", "english"], likes: 1271, dislikes: 36, views: 2116 },
+            { id: 9, title: "There are different types of secrets", content: "There are different types of secrets. Some are kept hidden for a reason, while others are just forgotten...", tags: ["history", "mystery"], likes: 166, dislikes: 16, views: 454 },
+            { id: 10, title: "They rushed out the door", content: "They rushed out the door as fast as they could, leaving everything behind in a hurry...", tags: ["action", "drama"], likes: 14, dislikes: 5, views: 78 },
+            { id: 11, title: "It wasn't quite yet time to panic", content: "It wasn't quite yet time to panic, but the situation was getting tense...", tags: ["thriller", "suspense"], likes: 103, dislikes: 12, views: 245 },
+            { id: 12, title: "She was aware that things could go wrong", content: "She was aware that things could go wrong, but she pressed on regardless...", tags: ["life", "reflection"], likes: 271, dislikes: 8, views: 1163 }
+        ];
+
+        // Function to render posts
+        function renderPosts(postsToRender) {
+            const container = document.getElementById('postContainer');
+            container.innerHTML = '';
+            postsToRender.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'post-card';
+                card.innerHTML = `
+                    <button class="delete-btn" onclick="deletePost(${post.id})">✗</button>
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                    <div class="post-tags">${post.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="likePost(${post.id})"><span class="like">❤️</span><span>${post.likes}</span></button>
+                        <button class="action-btn dislike-btn" onclick="dislikePost(${post.id})"><span class="dislike">😕</span><span>${post.dislikes}</span></button>
+                        <button class="action-btn view-btn" onclick="viewPost(${post.id})"><span class="view">👁️</span><span>${post.views}</span></button>
+                        <button class="edit-btn" onclick="editPost(${post.id})">Edit</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Function to handle delete
+        function deletePost(postId) {
+            posts = posts.filter(p => p.id !== postId);
+            renderPosts(posts);
+        }
+
+        // Function to handle like
+        function likePost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (post) {
+                post.likes += 1;
+                renderPosts(posts);
+            }
+        }
+
+        // Function to handle dislike
+        function dislikePost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (post) {
+                post.dislikes += 1;
+                renderPosts(posts);
+            }
+        }
+
+        // Function to view post (placeholder)
+        function viewPost(postId) {
+            alert(`Viewing post with ID: ${postId}`);
+        }
+
+        // Function to edit post (placeholder)
+        function editPost(postId) {
+            alert(`Editing post with ID: ${postId}`);
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredPosts = posts.filter(post =>
+                post.title.toLowerCase().includes(searchTerm) ||
+                post.content.toLowerCase().includes(searchTerm) ||
+                post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            renderPosts(filteredPosts);
+        });
+
+        // Initial render
+        renderPosts(posts);
+    </script>
+</body>
+</html>
