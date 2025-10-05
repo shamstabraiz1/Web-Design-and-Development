@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katara Navbar</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .top-bar {
+      background-color: #b5832d;
+      color: white;
+      font-size: 14px;
+      padding: 5px 0;
+    }
+    .top-links {
+      background-color: #2d2d2d;
+      color: white;
+      font-size: 14px;
+      padding: 5px 0;
+    }
+    .navbar-nav .nav-link {
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .badge-custom {
+      background: #b5832d;
+      font-size: 12px;
+      position: absolute;
+      top: -5px;
+      right: -10px;
+    }
+    .search-bar {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .search-bar select {
+      border: none;
+      border-right: 1px solid #ddd;
+    }
+    .search-bar input {
+      border: none;
+    }
+    .search-bar button {
+      background-color: #b5832d;
+      border: none;
+      color: white;
+    }
+    /* Dropdown Styles */
+    .dropdown-menu {
+      border: none;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 8px 0;
+    }
+    .dropdown-item {
+      padding: 8px 20px;
+      font-size: 14px;
+    }
+    .dropdown-item:hover {
+      background-color: #f8f9fa;
+      color: #b5832d;
+    }
+    .dropdown-divider {
+      margin: 8px 0;
+      border-color: #eee;
+    }
+    .navbar-nav .nav-item {
+      margin: 0 10px;
+    }
+    .nav-link.dropdown-toggle::after {
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+    .product-price{
+      color: #b5832d;
+      margin-bottom: 0;
+    }
+    .text-muted{
+      color: #b5832d;
+    }
+    .card-img-top {
+      height: 280px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 10px;
+    }
+    .card-body h6 {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .card-body small {
+      font-size: 0.75rem;
+    }
+    .card-body p {
+      margin-bottom: 0;
+    }
+
+     .newsletter-section {
+      background-color: #f8f9fa;
+      padding: 40px 0;
+      border-top: 1px solid #eee;
+    }
+    .newsletter-section input {
+      border-radius: 0;
+    }
+    .newsletter-section button {
+      background-color: #b5832d;
+      color: white;
+      border-radius: 0;
+      font-weight: bold;
+    }
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid #eee;
+    }
+    .footer h6 {
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .footer a {
+      display: block;
+      margin-bottom: 8px;
+      color: #000;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .cookie-bar {
+      background-color: #2d2d2d;
+      color: white;
+      padding: 15px 0;
+      font-size: 14px;
+    }
+    .cookie-bar button {
+      background-color: #b5832d;
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 8px 16px;
+    }
+
+  </style>
+</head>    
+<body>
+
+  <!-- Promo Bar -->
+  <div class="top-bar text-center">
+    Get <strong>UPTO 40% OFF</strong> on your 1st order <a href="#" class="text-white text-decoration-underline">More details</a>
+  </div>
+
+  <!-- Language, Currency & User -->
+  <div class="top-links">
+    <div class="container d-flex justify-content-between">
+      <div>
+        <span class="me-3">English <i class="fa fa-caret-down"></i></span>
+        <span>USD <i class="fa fa-caret-down"></i></span>
+      </div>
+      <div>
+        Welcome User | <a href="#" class="text-white text-decoration-none">My Account <i class="fa fa-caret-down"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logo + Search + Icons -->
+  <div class="container py-3 d-flex align-items-center justify-content-between">
+    <h2 class="m-0">Katara.</h2>
+    <div class="search-bar d-flex w-50">
+      <select class="form-select w-50">
+        <option>All Categories</option>
+        <option>Fashion</option>
+        <option>Electronics</option>
+      </select>
+      <input type="text" class="form-control" placeholder="Search Products...">
+      <button class="px-3"><i class="fa fa-search"></i></button>
+    </div>
+    <div class="d-flex align-items-center">
+      <div class="position-relative me-4">
+        <i class="fa fa-heart fa-lg"></i>
+        <span class="badge badge-custom">3</span>
+      </div>
+      <div class="position-relative">
+        <i class="fa fa-shopping-cart fa-lg"></i>
+        <span class="badge badge-custom">2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light border-top border-bottom">
+    <div class="container">
+      <ul class="navbar-nav mx-auto">
+        <!-- Home Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Home
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Home 1</a></li>
+            <li><a class="dropdown-item" href="#">Home 2</a></li>
+            <li><a class="dropdown-item" href="#">Home 3</a></li>
+          </ul>
+        </li>
+
+        <!-- Mega Menu Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Mega Menu <span class="badge bg-warning text-dark">New</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">RING</a></li>
+            <li><a class="dropdown-item" href="#">Earrings</a></li>
+            <li><a class="dropdown-item" href="#">Crowns</a></li>
+            <li><a class="dropdown-item" href="#">Necklace</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Special Offers</a></li>
+          </ul>
+        </li>
+
+        <!-- Shop Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Shop
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Top</a></li>
+            <li><a class="dropdown-item" href="#">Right bar</a></li>
+            <li><a class="dropdown-item" href="#">Top rightbar</a></li>
+            <li><a class="dropdown-item" href="#">Left bar</a></li>
+          </ul>
+        </li>
+
+        <!-- Product Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Product
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Left Carousel</a></li>
+            <li><a class="dropdown-item" href="#">Right Carousel</a></li>
+            <li><a class="dropdown-item" href="#">Right banner</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Custom Orders</a></li>
+          </ul>
+        </li>
+
+        <!-- Pages Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Pages
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">About Us</a></li>
+            <li><a class="dropdown-item" href="#">Contact</a></li>
+            <li><a class="dropdown-item" href="#">FAQ</a></li>
+            <li><a class="dropdown-item" href="#">Privacy Policy</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  
+  <!-- Breadcrumb -->
+  <div class="container mt-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Shop</li>
+      </ol>
+    </nav>
+
+    <!-- Page Title -->
+    <h3 class="fw-bold mb-4">Shop Page</h3>
+
+    <!-- Filter Bar -->
+    <div class="d-flex align-items-center gap-2 mb-3" style="height: 20px;">
+      <div class="btn-group" style="height: 20px;">
+        <button class="btn btn-sm btn-outline-secondary py-0 px-2" style="height: 20px;"><i class="fa fa-th-large"></i></button>
+        <button class="btn btn-sm btn-outline-secondary py-0 px-2" style="height: 20px;"><i class="fa fa-list"></i></button>
+      </div>
+      <select class="form-select form-select-sm py-0" style="height: 20px;">
+        <option>Category</option>
+        <option>Necklace</option>
+      </select>
+      <select class="form-select form-select-sm py-0" style="height: 20px;">
+        <option>$1001-$2500</option>
+      </select>
+      <select class="form-select form-select-sm py-0" style="height: 20px;">
+        <option>Medium</option>
+      </select>
+      <select class="form-select form-select-sm py-0" style="height: 20px;">
+        <option>Popular</option>
+      </select>
+      <select class="form-select form-select-sm py-0" style="height: 20px;">
+        <option>Items: 08</option>
+      </select>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="row g-4">
+      
+      <!-- Product 1 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k1.jpg" class="card-img-top" alt="Ring">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">RING COLLECTION</small>
+            <h6 class="mt-1">Austrian Crystals Wedding Jewelry Ring</h6>
+            <p class="product-price">$285</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k2.jpg" class="card-img-top" alt="Earrings">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">EARRINGS</small>
+            <h6 class="mt-1">Crystal Water Drop Wedding Function Earrings</h6>
+            <p><span class="old-price">$450</span> <span class="product-price">$285</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k3.jpg" class="card-img-top" alt="Ring">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">RING COLLECTION</small>
+            <h6 class="mt-1">Crystal Wedding And Engagement Function Rings</h6>
+            <p><span class="old-price">$120</span> <span class="product-price">$85</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k4.jpg" class="card-img-top" alt="Ring">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">RINGS</small>
+            <h6 class="mt-1">Women Wedding Zircon Engagement Ring</h6>
+            <p class="product-price">$110</p>
+          </div>
+        </div>
+      </div>
+
+       <!-- Product 5 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k5.jpg" class="card-img-top" alt="Ring">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">RINGS</small>
+            <h6 class="mt-1">Women Wedding Zircon Engagement Ring</h6>
+            <p class="product-price">$110</p>
+          </div>
+        </div>
+      </div>
+        
+       <!-- Product 6 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k6.jpg" class="card-img-top" alt="Ring">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">RINGS</small>
+            <h6 class="mt-1">Women Wedding Zircon Engagement Ring</h6>
+            <p class="product-price">$110</p>
+          </div>
+        </div>
+      </div>
+
+       <!-- Product 7 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k7.jpg" class="card-img-top" alt="Ring">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">RINGS</small>
+            <h6 class="mt-1">Women Wedding Zircon Engagement Ring</h6>
+            <p class="product-price">$110</p>
+          </div>
+        </div>
+      </div>
+
+       <!-- Product 8 -->
+      <div class="col-md-3 col-sm-6">
+        <div class="card product-card">
+          <div class="position-relative">
+            <img src="k8.jpg" class="card-img-top" alt="Ring">
+          </div>
+          <div class="card-body text-left">
+            <small class="text-muted">RINGS</small>
+            <h6 class="mt-1">Women Wedding Zircon Engagement Ring</h6>
+            <p class="product-price">$110</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="container text-center">
+      <h5 class="fw-bold">SIGN UP FOR NEWSLETTER & GET ALL UPDATES</h5>
+      <p class="text-muted">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et.</p>
+      <div class="d-flex justify-content-center mt-3">
+        <input type="email" class="form-control w-25" placeholder="Your Email ...">
+        <button class="px-4">SUBSCRIBE</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        
+        <!-- Store Info -->
+        <div class="col-md-3">
+          <h6>Store</h6>
+          <h4 class="fw-bold">Katara.</h4>
+          <p>1223, Main Street, Anytown New York, 38000 USA</p>
+          <p>888 - 963 - 600</p>
+          <p>info@example.com</p>
+        </div>
+
+        <!-- Info -->
+        <div class="col-md-2">
+          <h6>Info</h6>
+          <a href="#">Home</a>
+          <a href="#">Blog</a>
+          <a href="#">About Us</a>
+          <a href="#">Contact Us</a>
+        </div>
+
+        <!-- Policies -->
+        <div class="col-md-3">
+          <h6>Our Policies</h6>
+          <a href="#">FAQs</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Refund Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+
+        <!-- My Account -->
+        <div class="col-md-2">
+          <h6>My Account</h6>
+          <a href="#">Shop</a>
+          <a href="#">Orders</a>
+          <a href="#">Shopping Cart</a>
+          <a href="#">Wishlist</a>
+        </div>
+
+        <!-- Social -->
+        <div class="col-md-2">
+          <h6>Social Network</h6>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Bar -->
+  <div class="cookie-bar">
+    <div class="container d-flex justify-content-between align-items-center">
+      <span>
+        This site uses cookies. By continuing to browse the site you are agreeing to our use of cookies. 
+        Review our <a href="#" class="text-white text-decoration-underline">cookies information</a> for more details.
+      </span>
+      <button>OK, I AGREE</button>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
